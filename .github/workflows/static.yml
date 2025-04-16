@@ -1,0 +1,142 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techhilfe – Bildung aus Erfahrung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+        header {
+            background-color: #1f3b75;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        section {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h2 {
+            color: #1f3b75;
+        }
+        .contact, .form-link {
+            background-color: #e0e7f1;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1f3b75;
+            color: white;
+        }
+        a {
+            color: #1f3b75;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Techhilfe</h1>
+    <p>Bildung aus Erfahrung</p>
+</header>
+
+<section>
+    <h2>Über mich</h2>
+    <p>Ich heiße [Dein Name], komme ursprünglich aus Paraguay und lebe seit fünf Jahren in Deutschland.
+    In dieser Zeit habe ich eine Ausbildung als Mechatroniker abgeschlossen, parallel dazu die Fachhochschulreife erworben
+    und die Delta-Prüfung bestanden, um mein Studium in Deutschland zu ermöglichen.
+    Ich weiß, wie herausfordernd der Einstieg in das deutsche Bildungssystem sein kann – deshalb möchte ich anderen helfen,
+    ihren Weg schneller und mit weniger Hürden zu finden.</p>
+</section>
+
+<section>
+    <h2>Was ich anbiete</h2>
+    <ul>
+        <li>📐 Mathematik & Physik (Berufsschule-Niveau)</li>
+        <li>🛠️ Technisches Grundwissen (für Ausbildung/Studium)</li>
+        <li>📝 Hilfe bei Bewerbungen: Lebenslauf, Anschreiben, Vorstellungsgespräche</li>
+        <li>🎓 Informationen über Ausbildung, Duales Studium und Hochschulzugang</li>
+    </ul>
+    <p>🕒 Online, 1x pro Woche – individuell angepasst an dein Level.</p>
+</section>
+
+<section class="form-link">
+    <h2>Mitmachen</h2>
+    <p>Du brauchst Unterstützung? Dann melde dich hier an:</p>
+    <p><strong>Google Form Link:</strong> <em>(Hier wird der Link eingefügt, sobald du ihn hast)</em></p>
+</section>
+
+<section>
+    <h2>Ergebnisse & Wirkung</h2>
+    <ul>
+        <li>👥 Anzahl der betreuten Schüler*innen: 4</li>
+        <li>📚 Durchgeführte Sitzungen: 17</li>
+        <li>✍️ Themen: Bruchrechnung, Ohm'sches Gesetz, Bewerbungsschreiben</li>
+    </ul>
+    <blockquote>„Dank deiner Hilfe konnte ich meine Mathe-Note verbessern und habe endlich einen Ausbildungsplatz gefunden!“ – A., 17 Jahre</blockquote>
+</section>
+
+<section class="contact">
+    <h2>Kontakt</h2>
+    <p>📧 E-Mail: <a href="mailto:techhilfe25@gmail.com">techhilfe25@gmail.com</a></p>
+</section>
+
+<footer>
+    <p>&copy; 2025 Techhilfe – Bildung aus Erfahrung</p>
+</footer>
+
+</body>
+</html>
